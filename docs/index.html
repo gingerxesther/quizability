@@ -1,0 +1,381 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600&display=swap');
+  @font-face {
+    font-family: 'GT Ultra Ultra';
+    src: url('GT-Ultra-Ultra-Trial-VF.ttf') format('truetype');
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: 'Proxima Soft';
+    src: url('ProximaSoft-Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Proxima Soft';
+    src: url('ProximaSoft-Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Untitled Serif';
+    src: url('UntitledSerif-Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Untitled Serif';
+    src: url('UntitledSerif-Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Proxima Soft', sans-serif; background: #f5ebd9; }
+  .page { background: #f5ebd9; min-width: 900px; overflow: hidden; }
+  .nav { background: #f5ebd9; display: flex; align-items: center; justify-content: space-between; padding: 16px 80px; border-bottom: none; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo-icon { width: 36px; height: 36px; }
+  .nav-links { display: flex; gap: 40px; align-items: center; }
+  .nav-link { font-family: 'Proxima Soft', sans-serif; font-size: 16px; color: #1a1a1a; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .nav-cta { border: 2px solid #1a1a1a; border-radius: 999px; padding: 8px 20px; font-family: 'Proxima Soft', sans-serif; font-size: 15px; color: #1a1a1a; background: transparent; cursor: pointer; }
+  .hero-section { padding: 0 80px 60px; }
+  .cards-row { display: flex; justify-content: center; align-items: flex-end; gap: 40px; padding: 40px 0 0; position: relative; min-height: 280px; }
+  .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(23,26,32,0.1); }
+  .import-card { width: 320px; height: 200px; padding: 20px; transform: rotate(-10deg); }
+  .import-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .import-card-title { font-family: 'Proxima Soft', sans-serif; font-weight: 700; font-size: 15px; color: #171a20; }
+  .import-card-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 18px; cursor: pointer; }
+  .drop-zone { border: 2px dashed #4278ff; border-radius: 12px; background: #ecf2ff; height: 120px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+  .drop-zone-text { font-size: 12px; color: #4278ff; text-align: center; }
+  .drop-zone-link { text-decoration: underline; font-weight: 700; }
+  .flashcard { width: 320px; height: 200px; display: flex; align-items: center; justify-content: center; border: 1.5px solid #c8cfdb; border-radius: 12px; position: relative; background: white; }
+  .flashcard-text { font-family: 'Proxima Soft', sans-serif; font-weight: 700; font-size: 22px; color: #171a20; text-align: center; }
+  .flip-btn { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; opacity: 0.4; }
+  .smart-notes-card { width: 330px; height: 200px; padding: 16px; transform: rotate(10deg); box-shadow: 0 2px 12px rgba(23,26,32,0.12); }
+  .smart-tag { background: #e8ebf0; border: 0.5px solid #444f60; border-radius: 4px; padding: 3px 8px; font-size: 10px; font-weight: 700; color: #444f60; display: inline-block; margin-bottom: 8px; }
+  .smart-title { font-weight: 700; font-size: 16px; color: #171a20; margin-bottom: 6px; }
+  .smart-section { font-weight: 700; font-size: 12px; color: #171a20; margin-bottom: 4px; }
+  .smart-list { font-size: 11px; color: #171a20; padding-left: 14px; line-height: 1.5; }
+  .smart-more { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 700; color: #4278ff; }
+  .hero-text { text-align: center; padding-top: 48px; }
+  .hero-headline { font-family: 'GT Ultra Ultra', Georgia, serif; font-size: 68px; font-weight: 900; line-height: 1; color: #171a20; margin-bottom: 20px; }
+  .hero-sub { font-family: 'Untitled Serif', serif; font-size: 20px; color: #171a20; margin-bottom: 36px; line-height: 1.4; }
+  .waitlist-btn { background: #5497fe; border: none; border-radius: 999px; padding: 20px 48px; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: #1a1a1a; cursor: pointer; display: inline-block; }
+  .steps-section { padding: 40px 80px 100px; display: flex; flex-direction: column; gap: 60px; }
+  .step-row { display: flex; gap: 32px; align-items: flex-start; }
+  .step-info { flex: 1; display: flex; flex-direction: column; gap: 24px; padding-top: 12px; }
+  .step-header { display: flex; gap: 20px; align-items: center; }
+  .step-num { width: 80px; height: 80px; border-radius: 999px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-num span { font-family: 'GT Ultra Ultra', serif; font-size: 52px; font-weight: 900; color: #f5ebd9; line-height: 1; }
+  .step-title { font-family: 'GT Ultra Ultra', serif; font-size: 38px; font-weight: 900; color: #1a1a1a; line-height: 1; }
+  .step-desc { font-family: 'Untitled Serif', serif; font-size: 18px; color: #1a1a1a; line-height: 1.5; max-width: 380px; }
+  .step-visual { flex: 1; border-radius: 16px; height: 320px; overflow: hidden; position: relative; }
+  .step-visual-sage { background: #c9d29e; }
+  .step-visual-mist { background: #afc3e4; }
+  .step-visual-terra { background: #f4b080; }
+  .mini-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .step1-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .step1-stack { position: relative; width: 260px; height: 200px; }
+  .step1-import { position: absolute; top: 0; left: 0; width: 200px; padding: 14px; border-radius: 10px; background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+  .step1-import-title { font-weight: 700; font-size: 12px; color: #171a20; margin-bottom: 10px; }
+  .step1-dropzone { border: 1.5px dashed #4278ff; border-radius: 8px; background: #ecf2ff; height: 70px; display: flex; align-items: center; justify-content: center; }
+  .step1-dropzone-txt { font-size: 9px; color: #4278ff; text-align: center; }
+  .step1-flash { position: absolute; bottom: 0; right: 0; width: 160px; height: 100px; border: 1.5px solid #4278ff; border-radius: 8px; background: white; display: flex; align-items: center; justify-content: center; }
+  .step1-flash-txt { font-weight: 700; font-size: 13px; color: #171a20; text-align: center; }
+  .step2-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .step2-note { background: white; border-radius: 12px; padding: 20px; width: 260px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; }
+  .toolbar { display: flex; gap: 2px; align-items: center; background: white; border-radius: 8px; padding: 4px 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); }
+  .tool-btn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 14px; }
+  .tool-divider { width: 1px; height: 18px; background: #aab5c6; margin: 0 2px; }
+  .step3-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .step3-overview { background: white; border-radius: 10px; padding: 14px; width: 160px; box-shadow: 0 1px 6px rgba(0,0,0,0.1); transform: rotate(6deg); }
+  .step3-overview-title { font-weight: 700; font-size: 12px; color: #171a20; margin-bottom: 8px; }
+  .step3-stat { background: #f6f6f8; border-radius: 4px; padding: 6px 8px; font-size: 9px; color: #171a20; margin-bottom: 4px; }
+  .step3-btn { background: #ecf2ff; border-radius: 4px; padding: 6px 8px; font-size: 9px; color: #4278ff; font-weight: 700; display: flex; justify-content: space-between; }
+  .step3-quiz { background: white; border-radius: 10px; padding: 14px; width: 150px; box-shadow: 0 1px 6px rgba(0,0,0,0.1); transform: rotate(-6deg); }
+  .quiz-tag { background: #e8ebf0; border: 0.3px solid #444f60; border-radius: 3px; padding: 2px 5px; font-size: 7px; font-weight: 700; color: #444f60; display: inline-block; margin-bottom: 6px; }
+  .quiz-q { font-weight: 700; font-size: 10px; color: #171a20; margin-bottom: 8px; line-height: 1.3; }
+  .quiz-opt { background: #f6f6f8; border-radius: 4px; padding: 4px 6px; font-size: 8px; color: #171a20; margin-bottom: 3px; }
+  .footer { background: #1a1a1a; padding: 64px 80px 48px; color: #f5ebd9; }
+  .footer-top { display: flex; gap: 32px; margin-bottom: 64px; }
+  .footer-newsletter { border-bottom: 2px solid #f5ebd9; padding-bottom: 16px; width: 340px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-newsletter-text { font-family: 'Proxima Soft', sans-serif; font-size: 16px; color: #f5ebd9; }
+  .footer-arrow { color: #f5ebd9; font-size: 18px; }
+  .footer-links { display: flex; gap: 80px; flex: 1; justify-content: flex-end; }
+  .footer-col { display: flex; flex-direction: column; gap: 16px; }
+  .footer-link { font-family: 'Proxima Soft', sans-serif; font-size: 15px; color: #f5ebd9; text-decoration: none; }
+  .footer-wordmark { text-align: center; }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 130px; font-weight: 900; color: #f5ebd9; letter-spacing: -4px; line-height: 0.9; }
+  .footer-made { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Proxima Soft', sans-serif; font-size: 18px; color: #f5ebd9; margin-top: 20px; }
+  .footer-heart { color: #f5ebd9; font-size: 20px; }
+  .footer-copy { font-family: 'Proxima Soft', sans-serif; font-size: 13px; color: #f5ebd9; text-align: center; margin-top: 10px; opacity: 0.7; }
+  .chevron { font-size: 11px; opacity: 0.7; }
+
+  /* Card interactions */
+  .card-wrapper { flex-shrink: 0; cursor: pointer; }
+  @keyframes floatA {
+    0%, 100% { transform: rotate(-10deg) translateY(0px); }
+    50% { transform: rotate(-10deg) translateY(-5px); }
+  }
+  @keyframes floatB {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes floatC {
+    0%, 100% { transform: rotate(10deg) translateY(0px); }
+    50% { transform: rotate(10deg) translateY(-5px); }
+  }
+  #card-a { animation: floatA 3.5s ease-in-out infinite; }
+  #card-b { animation: floatB 3.5s ease-in-out 0.8s infinite; }
+  #card-c { animation: floatC 3.5s ease-in-out 1.6s infinite; }
+</style>
+
+<div class="page">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="logo.png" class="nav-logo-icon" alt="Notability logo">
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link">Business</a>
+      <a href="#" class="nav-link">Education</a>
+      <a href="#" class="nav-link">Pricing</a>
+      <a href="#" class="nav-link">Resources</a>
+    </div>
+    <button class="nav-cta">SIGN UP</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="cards-row">
+      <!-- Import card (tilted left) -->
+      <div class="card-wrapper" id="card-a">
+        <div class="card import-card" style="transform: none; width: 280px; height: 180px; padding: 16px;">
+          <div class="import-card-header">
+            <span class="import-card-title">Import Flashcard Sets</span>
+            <span class="import-card-close" style="font-size: 14px; color: #aaa;">✕</span>
+          </div>
+          <div class="drop-zone" style="height: 100px;">
+            <p class="drop-zone-text" style="font-size: 11px; padding: 0 12px;">Drag a CSV / TXT file or <span class="drop-zone-link">upload from your device</span></p>
+          </div>
+        </div>
+      </div>
+      <!-- Center flashcard -->
+      <div class="card-wrapper" id="card-b">
+        <div class="flashcard" style="width: 300px; height: 200px;">
+          <span class="flashcard-text" style="font-size: 20px;">Binary Search</span>
+          <div class="flip-btn" style="font-size: 13px; color: #888; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">&#8635;</div>
+        </div>
+      </div>
+      <!-- Smart notes card (tilted right) -->
+      <div class="card-wrapper" id="card-c">
+        <div class="card smart-notes-card" style="transform: none; width: 290px; height: 190px; padding: 14px; position: relative; overflow: hidden;">
+          <div class="smart-tag">SMART NOTES</div>
+          <div class="smart-title">AVL Trees</div>
+          <div class="smart-section">Overview</div>
+          <ul class="smart-list">
+            <li>AVL trees are a type of self-balancing binary search tree</li>
+            <li>Goal is to keep the tree balanced</li>
+          </ul>
+          <div class="smart-section" style="margin-top: 6px;">Properties</div>
+          <ul class="smart-list">
+            <li style="color: #aaa;">For every node, [height(left) - height (right)] &lt; 1</li>
+          </ul>
+          <div class="smart-more">More</div>
+        </div>
+      </div>
+    </div>
+<div class="hero-text">
+      <h1 class="hero-headline">Your notes and<br>flashcards all in one place.</h1>
+      <p class="hero-sub">Import your notes and flashcards from Anki, Quizlet, and more.</p>
+      <button class="waitlist-btn">Join the waitlist</button>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps-section">
+    <!-- Step 1 -->
+    <div class="step-row">
+      <div class="step-info">
+        <div class="step-header">
+          <div class="step-num"><span>1</span></div>
+          <h2 class="step-title">Upload Files</h2>
+        </div>
+        <p class="step-desc">Import your notes and flashcards from Anki, Quizlet, and more.</p>
+      </div>
+      <div class="step-visual">
+        <img src="Frame 2147237006.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-row">
+      <div class="step-info">
+        <div class="step-header">
+          <div class="step-num"><span>2</span></div>
+          <h2 class="step-title">Let us work our magic</h2>
+        </div>
+        <p class="step-desc">We'll import your pre-existing flashcards into Notability.</p>
+      </div>
+      <div class="step-visual">
+        <img src="Frame 2147237006-1.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-row">
+      <div class="step-info">
+        <div class="step-header">
+          <div class="step-num"><span>3</span></div>
+          <h2 class="step-title">Study like a pro</h2>
+        </div>
+        <p class="step-desc">With Notability, transform your content into quizzes, active-recall study materials, Smart Notes, and more.</p>
+      </div>
+      <div class="step-visual">
+        <img src="Frame 2147237006-2.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- CARD INTERACTIONS -->
+  <script>
+    (function () {
+      const wrappers = [
+        document.getElementById('card-a'),
+        document.getElementById('card-b'),
+        document.getElementById('card-c'),
+      ];
+      let isDeck = false;
+      let deckOrder = [0, 1, 2]; // [back, middle, front]
+      let resetTimer = null;
+      const deckRotations = [-7, 4, -2];
+      const deckYOffsets = [8, 4, 0];
+      const baseAnimations = [
+        'floatA 3.5s ease-in-out infinite',
+        'floatB 3.5s ease-in-out 0.8s infinite',
+        'floatC 3.5s ease-in-out 1.6s infinite',
+      ];
+
+      function scheduleReset() {
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(exitDeck, 3000);
+      }
+
+      function applyDeck(animate) {
+        deckOrder.forEach((wIdx, stackPos) => {
+          const w = wrappers[wIdx];
+          w.style.transition = animate ? 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)' : 'none';
+          w.style.transform = `translateX(-50%) rotate(${deckRotations[stackPos]}deg) translateY(${deckYOffsets[stackPos]}px)`;
+          w.style.zIndex = stackPos + 1;
+        });
+        updateCursor();
+      }
+
+      function enterDeck() {
+        isDeck = true;
+        wrappers.forEach(w => {
+          w.style.animation = 'none';
+          w.style.position = 'absolute';
+          w.style.left = '50%';
+          w.style.bottom = '0';
+        });
+        applyDeck(true);
+        scheduleReset();
+      }
+
+      function exitDeck() {
+        clearTimeout(resetTimer);
+        isDeck = false;
+        deckOrder = [0, 1, 2];
+        wrappers.forEach((w, i) => {
+          w.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
+          w.style.zIndex = '';
+          w.style.cursor = '';
+          setTimeout(() => {
+            w.style.position = '';
+            w.style.left = '';
+            w.style.bottom = '';
+            w.style.transform = '';
+            w.style.transition = '';
+            w.style.animation = baseAnimations[i];
+          }, 500);
+        });
+      }
+
+      function updateCursor() {
+        wrappers.forEach((w, i) => {
+          w.style.cursor = deckOrder[2] === i ? 'pointer' : 'default';
+        });
+      }
+
+      function cycleTop() {
+        const frontIdx = deckOrder[2];
+        const w = wrappers[frontIdx];
+        w.style.transition = 'transform 0.35s cubic-bezier(0.55,0,1,0.45)';
+        w.style.transform = `translateX(calc(-50% + 380px)) rotate(20deg)`;
+        setTimeout(() => {
+          deckOrder = [frontIdx, ...deckOrder.slice(0, 2)];
+          w.style.transition = 'none';
+          w.style.transform = `translateX(-50%) rotate(${deckRotations[0]}deg) translateY(${deckYOffsets[0]}px)`;
+          w.style.zIndex = 1;
+          setTimeout(() => applyDeck(true), 30);
+          scheduleReset();
+        }, 350);
+      }
+
+      wrappers.forEach(w => {
+        w.addEventListener('click', () => {
+          if (!isDeck) {
+            enterDeck();
+          } else if (w === wrappers[deckOrder[2]]) {
+            cycleTop();
+          }
+        });
+      });
+
+      const hero = document.querySelector('.hero-section');
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting && isDeck) exitDeck();
+      }, { threshold: 0 });
+      observer.observe(hero);
+
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        if (isDeck && window.scrollY > lastScrollY) exitDeck();
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-newsletter">
+        <span class="footer-newsletter-text">Join our community</span>
+        <span class="footer-arrow">→</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <a href="#" class="footer-link">Jobs</a>
+          <a href="#" class="footer-link">Support</a>
+          <a href="#" class="footer-link">Terms of service</a>
+          <a href="#" class="footer-link">Privacy policy</a>
+        </div>
+        <div class="footer-col">
+          <a href="#" class="footer-link">Discord</a>
+          <a href="#" class="footer-link">Instagram</a>
+          <a href="#" class="footer-link">Linkedin</a>
+          <a href="#" class="footer-link">Threads</a>
+          <a href="#" class="footer-link">Tiktok</a>
+          <a href="#" class="footer-link">Youtube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-wordmark">
+      <div class="footer-brand">notability</div>
+      <div class="footer-made">
+        <span>made with</span>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 19C11 19 3 14 3 8.5C3 6 5 4 7.5 4C9 4 10.5 5 11 6C11.5 5 13 4 14.5 4C17 4 19 6 19 8.5C19 14 11 19 11 19Z" fill="#f5ebd9" stroke="#f5ebd9" stroke-width="1"/></svg>
+        <span>in San Francisco</span>
+      </div>
+      <p class="footer-copy">©2025 Ginger Labs - Notability is a registered trademark of Ginger Labs, Inc.</p>
+    </div>
+  </footer>
+</div>
